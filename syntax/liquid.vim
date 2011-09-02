@@ -23,6 +23,9 @@ if !exists('b:liquid_subtype') && main_syntax == 'liquid'
   endif
   if b:liquid_subtype == ''
     let b:liquid_subtype = matchstr(substitute(expand('%:t'),'\c\%(\.liquid\)\+$','',''),'\.\zs\w\+$')
+    if b:liquid_subtype == 'htm'  " translate DOS-style 3-letter extension
+      let b:liquid_subtype = 'html'
+    endif
   endif
   if b:liquid_subtype == ''
     let b:liquid_subtype = g:liquid_default_subtype
